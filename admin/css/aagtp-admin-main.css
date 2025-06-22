@@ -1,4 +1,4 @@
-div.popuptab {
+div.aagtp_popuptab {
     border: 1px solid #c1c1c1;
     padding: 15px;
     border-bottom: 0;
@@ -8,9 +8,76 @@ div.popuptab {
     text-align: center;
     cursor: pointer;
 }
-div.popuptab:not(:last-child) {
+div.aagtp_popuptab.active{
+    background-color: #f4f4f9;
+}
+div.aagtp_popuptab:not(:last-child) {
     border-right: 0;
 }
-.popup-head {
+.aagtp_popup-head {
     display: flex;
+}
+div.aagtp_popupcont {
+    padding: 30px 20px;
+    display: none;
+}
+
+div.aagtp_popupcont.active {
+    background: #f4f4f9;
+    display: block;
+    border: 1px solid #c1c1c1;
+    margin-top: -1px;
+}
+.divider {
+    width: 100%;
+    height: 1px;
+    background: #c1c1c1;
+    margin: 20px 0;
+}
+.buttonsettings > div {
+    width: 50%;
+}
+.buttonsettings {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+}
+div.aagtp_setting-item label {
+    padding-bottom: 5px;
+    display: flex;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+div.aagtp_setting-item input {
+    width: 100%;
+}
+div.aagtp_setting-item {
+    margin-bottom: 12px;
+}
+div.aagtp_setting-item input {
+    width: 100%;
+    border-color: #c1c1c1;
+    padding: 2px 10px;
+}
+.image-setting-col > div {
+    width: 50%;
+}
+
+.image-setting-col select {
+    width: 100%;
+}
+.image-setting-col {
+    display: flex;
+    gap: 50px;
+}
+
+@media only screen and (max-width: 991px){
+    .buttonsettings {
+        gap: 0;
+        flex-wrap: wrap;
+    }
+    .buttonsettings > div {
+        width: 100%;
+    }
 }

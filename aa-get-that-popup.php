@@ -40,8 +40,13 @@ if( !class_exists('AAGetThatPopup')){
 	class AAGetThatPopup {
 
 		function __construct(){
+
+			//jQuery enqueue for plugin use
+			//add_action( 'admin_enqueue_scripts', function(){ wp_enqueue_script( 'jquery' ); });
+			//add_action( 'admin_enqueue_scripts', function(){ wp_enqueue_script( 'jquery' ); });
 			//Enqueue scripts admin hook
 			add_action( 'admin_enqueue_scripts', [$this, 'admin_scripts']);
+
 		}
 
 		public static function activate(){
@@ -54,8 +59,8 @@ if( !class_exists('AAGetThatPopup')){
 		public function admin_scripts(){
 			global $post;
 			if(isset($post) && $post->post_type === "aagtp"){
-				wp_enqueue_style( 'admin_style', plugin_dir_url( __FILE__ )."/admin/css/aagtp-admin-main.css");
-				wp_enqueue_script( 'admin_script', plugin_dir_url( __FILE__ )."/admin/js/aagtp-admin-main.js");
+				wp_enqueue_style( 'admin_style', plugin_dir_url( __FILE__ )."admin/css/aagtp-admin-main.css");
+				wp_enqueue_script( 'admin_script', plugin_dir_url( __FILE__ )."admin/js/aagtp-admin-main.js", true);
 			}
 		}
 

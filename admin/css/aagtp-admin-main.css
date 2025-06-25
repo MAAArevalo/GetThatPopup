@@ -34,10 +34,10 @@ div.aagtp_popupcont.active {
     background: #c1c1c1;
     margin: 20px 0;
 }
-.buttonsettings > div {
+.buttonsettings > div, .popup-setting-col {
     width: 50%;
 }
-.buttonsettings {
+.buttonsettings, .popupsettings {
     display: flex;
     justify-content: space-between;
     gap: 50px;
@@ -73,11 +73,11 @@ div.aagtp_setting-item input {
 }
 
 @media only screen and (max-width: 991px){
-    .buttonsettings {
+    .buttonsettings, .popupsettings {
         gap: 0;
         flex-wrap: wrap;
     }
-    .buttonsettings > div {
+    .buttonsettings > div, .popup-setting-col {
         width: 100%;
     }
 }

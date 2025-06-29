@@ -32,10 +32,15 @@ if(!defined('ABSPATH')){
 }
 
 if( !class_exists('AAGetThatPopup')){
+
+	/* Admin */
 	require_once plugin_dir_path( __FILE__ ) . 'includes/aagtp-activate.php';
 	require_once plugin_dir_path( __FILE__ ) . 'includes/aagtp-deactivate.php';
 	require_once plugin_dir_path( __FILE__ ) . 'includes/aagtp-cpt.php';
 	require_once plugin_dir_path( __FILE__ ) . 'admin/aagtp-adminfields.php';
+
+	/* Public */
+	require_once plugin_dir_path( __FILE__ ) . 'public/aagtp-popup-front.php';
 	
 	class AAGetThatPopup {
 
@@ -74,6 +79,8 @@ if( !class_exists('AAGetThatPopup')){
 	//Register Deactivate
 	register_deactivation_hook( __FILE__, ['Aagtp_deactivate', 'deactivate'] );
 
+
+	/* Start of Admin */
 	//Run CPT
 	add_action( 'init', ['Aagtp_CPT', 'add_cpt'] );
 	
@@ -85,6 +92,14 @@ if( !class_exists('AAGetThatPopup')){
 
 	//Save Fields
 	add_action( 'save_post', ['Aagtp_adminfields', 'save_fields'] );
+
+	/* End of Admin */
+
+	/* Start of Front End */
+	add_action( 'wp_footer', ['Aagtp_popup_front', 'render_popup'] );
+
+	add_action( 'wp_enqueue_scripts', ['Aagtp_popup_front', 'popup_styles_scripts']);
+	/* End of Front End */
 
 
 

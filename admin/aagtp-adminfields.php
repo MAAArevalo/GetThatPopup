@@ -30,16 +30,13 @@ class Aagtp_adminfields{
         $gen_ImagePosition = sanitize_text_field( get_post_meta( $post->ID, '_aagtp_image_pos', true ) );
         $gen_ImageUrl = sanitize_text_field( get_post_meta( $post->ID, '_aagtp_image_url', true ) );
         $gen_ImageSize = sanitize_text_field( get_post_meta( $post->ID, '_aagtp_image_size', true ) );
-        /**
-         * Popup Style Settings
-         */
-        $style_PopupWidth = sanitize_text_field( get_post_meta( $post->ID, '_aagtp_popup_width', true ) );
-        $style_PopupMWidth = sanitize_text_field( get_post_meta( $post->ID, '_aagtp_popup_m_width', true ) );
-        $style_PopupBorderRad = sanitize_text_field( get_post_meta( $post->ID, '_aagtp_popup_border_rad', true ) );
-        $style_PopupBackColor = sanitize_text_field( get_post_meta( $post->ID, '_aagtp_popup_back_color', true ) );
-        $style_PopupBackImage = sanitize_text_field( get_post_meta( $post->ID, '_aagtp_popup_back_image', true ) );
-        $style_PopupTextColP = sanitize_text_field( get_post_meta( $post->ID, '_aagtp_popup_text_col_p', true ) );
-        $style_PopupTextColH = sanitize_text_field( get_post_meta( $post->ID, '_aagtp_popup_text_col_h', true ) );
+        $gen_PopupWidth = sanitize_text_field( get_post_meta( $post->ID, '_aagtp_popup_width', true ) );
+        $gen_PopupMWidth = sanitize_text_field( get_post_meta( $post->ID, '_aagtp_popup_m_width', true ) );
+        $gen_PopupBorderRad = sanitize_text_field( get_post_meta( $post->ID, '_aagtp_popup_border_rad', true ) );
+        $gen_PopupBackColor = sanitize_text_field( get_post_meta( $post->ID, '_aagtp_popup_back_color', true ) );
+        //$gen_PopupBackImage = sanitize_text_field( get_post_meta( $post->ID, '_aagtp_popup_back_image', true ) );
+        $gen_PopupTextColP = sanitize_text_field( get_post_meta( $post->ID, '_aagtp_popup_text_col_p', true ) );
+        $gen_PopupTextColH = sanitize_text_field( get_post_meta( $post->ID, '_aagtp_popup_text_col_h', true ) );
 
         /**
          * Popup Advance Settings
@@ -51,15 +48,48 @@ class Aagtp_adminfields{
         <div class="aagtp_popuptab-container">
             <div class="aagtp_popup-head">
                 <div id="aagtp_gen-tab" class="aagtp_popuptab active"><span>General</span></div>
-                <div id="aagtp_style-tab" class="aagtp_popuptab"><span>Style</span></div>
                 <div id="aagtp_adv-tab" class="aagtp_popuptab"><span>Advance</span></div>
             </div>
             <div class="aagtp_popupcontent">
                 <div id="aagtp_gen-cont" class="aagtp_popupcont active">
+                    <h3>Popup Settings</h3>
+                    <div class="divider"></div>
+                    <div class="popupsettings">
+                        <div class="popup-setting-col">
+                            <div class="aagtp_setting-item" id="aagtp_popupwidth">
+                                <label for="aagtp_popup_width">Popup Width (%):</label>
+                                <input type="number" min="20" max="100" name="aagtp_popup_width" id="aagtp_popup_width" value="<?php echo esc_attr( $gen_PopupWidth ); ?>">
+                            </div>
+                            <div class="aagtp_setting-item" id="aagtp_popupmwidth">
+                                <label for="aagtp_popup_width">Popup Max Width (px):</label>
+                                <input type="number" min="468" name="aagtp_popup_m_width" id="aagtp_popup_m_width" value="<?php echo esc_attr( $gen_PopupMWidth ); ?>">
+                            </div>
+                            <div class="aagtp_setting-item" id="aagtp_popupborderrad">
+                                <label for="aagtp_popup_border_rad">Popup Border Radius (Px):</label>
+                                <input type="text" min="468" name="aagtp_popup_border_rad" id="aagtp_popup_border_rad" value="<?php echo esc_attr( $gen_PopupBorderRad ); ?>">
+                                <p class="aagtp-note">Note: Top(px) Right(px) Bottom(px) Left(px) Sample: 20px 20px 20px 20px</p>
+                            </div>
+                        </div>
+                        <div class="popup-setting-col">
+                            <div class="aagtp_setting-item" id="aagtp_popupbackcolor">
+                                <label for="aagtp_popup_back_color">Popup Background Color:</label>
+                                <input type="color" name="aagtp_popup_back_color" id="aagtp_popup_back_color" value="<?php echo esc_attr( $gen_PopupBackColor ); ?>">
+                            </div>
+                            <div class="aagtp_setting-item" id="aagtp_popuptextcolorp">
+                                <label for="aagtp_popup_text_color_p">Paragraph Color:</label>
+                                <input type="color" name="aagtp_popup_text_color_p" id="aagtp_popup_text_color_p" value="<?php echo esc_attr( $gen_PopupTextColP ); ?>">
+                            </div>
+                            <div class="aagtp_setting-item" id="aagtp_popuptextcolorh">
+                                <label for="aagtp_popup_text_color_h">Heading Color:</label>
+                                <input type="color" name="aagtp_popup_text_color_h" id="aagtp_popup_text_color_h" value="<?php echo esc_attr( $gen_PopupTextColH ); ?>">
+                            </div>
+                        </div>
+
+                    </div>
+                    <h3>Button Settings</h3>
+                    <div class="divider"></div>
                     <div class="buttonsettings">
                         <div class="button-settings-common">
-                            <h3>Button Settings</h3>
-                            <div class="divider"></div>
                             <div class="aagtp_setting-item" id="aagtp_buttontext">
                                 <label for="aagtp_button_text">Button Text:</label>
                                 <input type="text" placeholder="Leave Blank to remove button" name="aagtp_button_text" id="aagtp_button_text" value="<?php echo esc_attr( $gen_ButtonText ); ?>">
@@ -69,24 +99,22 @@ class Aagtp_adminfields{
                                 <input type="number" name="aagtp_button_width" id="aagtp_button_width" value="<?php echo esc_attr( $gen_ButtonWidth ); ?>">
                             </div>
                             <div class="aagtp_setting-item" id="aagtp_buttontextcolor">
-                                <label for="aagtp_button_textcolor">Button Text Color (Hex):</label>
-                                <input type="text" placeholder="ex. #000000" name="aagtp_button_textcolor" id="aagtp_button_textcolor" value="<?php echo esc_attr( $gen_ButtonTextColor ); ?>">
+                                <label for="aagtp_button_textcolor">Button Text Color:</label>
+                                <input type="color" placeholder="ex. #000000" name="aagtp_button_textcolor" id="aagtp_button_textcolor" value="<?php echo esc_attr( $gen_ButtonTextColor ); ?>">
                             </div>
                             <div class="aagtp_setting-item" id="aagtp_buttonbackcolor">
-                                <label for="aagtp_button_backcolor">Button Background Color (Hex):</label>
-                                <input type="text" placeholder="ex. #000000" name="aagtp_button_backcolor" id="aagtp_button_backcolor" value="<?php echo esc_attr( $gen_ButtonBackColor ); ?>">
+                                <label for="aagtp_button_backcolor">Button Background Color:</label>
+                                <input type="color" placeholder="ex. #000000" name="aagtp_button_backcolor" id="aagtp_button_backcolor" value="<?php echo esc_attr( $gen_ButtonBackColor ); ?>">
                             </div>
                         </div>
                         <div class="button-settings-hover">
-                            <h3>Hover Button Settings</h3>
-                            <div class="divider"></div>
                             <div class="aagtp_setting-item" id="aagtp_buttontextcolorhover">
-                                <label for="aagtp_button_text_color_hover">Button Hover Text Color (Hex):</label>
-                                <input type="text" placeholder="ex. #000000" name="aagtp_button_text_color_hover" id="aagtp_button_text_color_hover" value="<?php echo esc_attr( $gen_HoverButtonTextColor ); ?>">
+                                <label for="aagtp_button_text_color_hover">Button Hover Text Color:</label>
+                                <input type="color" placeholder="ex. #000000" name="aagtp_button_text_color_hover" id="aagtp_button_text_color_hover" value="<?php echo esc_attr( $gen_HoverButtonTextColor ); ?>">
                             </div>
                             <div class="aagtp_setting-item" id="aagtp_buttonbackcolorhover">
-                                <label for="aagtp_button_back_color_hover">Button Hover Background Color (Hex):</label>
-                                <input type="text" placeholder="ex. #000000" name="aagtp_button_back_color_hover" id="aagtp_button_back_color_hover" value="<?php echo esc_attr( $gen_HoverButtonBackColor ); ?>">
+                                <label for="aagtp_button_back_color_hover">Button Hover Background Color:</label>
+                                <input type="color" placeholder="ex. #000000" name="aagtp_button_back_color_hover" id="aagtp_button_back_color_hover" value="<?php echo esc_attr( $gen_HoverButtonBackColor ); ?>">
                             </div>
                         </div>
                     </div>
@@ -118,16 +146,6 @@ class Aagtp_adminfields{
                             <label for="aagtp_image_url">Image URL:</label>
                             <input type="text" name="aagtp_image_url" id="aagtp_image_url" value="<?php echo esc_attr( $gen_ImageUrl ); ?>">
                         </div>
-                    </div>
-                </div>
-                <div id="aagtp_style-cont" class="aagtp_popupcont">
-                    <div class="aagtp_setting-item" id="aagtp_popupwidth">
-                        <label for="aagtp_popup_width">Popup Width:</label>
-                        <input type="number" min="20" max="100" name="aagtp_popup_width" id="aagtp_popup_width" value="<?php echo esc_attr( $style_PopupWidth ); ?>">
-                    </div>
-                    <div class="aagtp_setting-item" id="aagtp_popupmwidth">
-                        <label for="aagtp_popup_m_width">Popup Max Width:</label>
-                        <input type="number" min="425" name="aagtp_popup_m_width" id="aagtp_popup_m_width" value="<?php echo esc_attr( $style_PopupMWidth ); ?>">
                     </div>
                 </div>
                 <div id="aagtp_adv-cont" class="aagtp_popupcont"></div>

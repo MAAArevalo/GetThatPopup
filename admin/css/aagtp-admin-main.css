@@ -71,6 +71,19 @@ div.aagtp_setting-item input {
     display: flex;
     gap: 50px;
 }
+div.aagtp_popupcont input, div.aagtp_popupcont select {
+    min-height: 40px !important;
+}
+.color-input {
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+    gap: 10px;
+}
+select#aagtp_page_target {
+    width: 100%;
+    /* height: 300px; */
+}
 
 @media only screen and (max-width: 991px){
     .buttonsettings, .popupsettings {

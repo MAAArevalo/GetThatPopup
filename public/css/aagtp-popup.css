@@ -1,0 +1,26 @@
+div.aagtp-popup {
+    position: fixed;
+    z-index: 9;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+div#aagtp-popup-overlay {
+    width: 100%;
+    height: 100%;
+    background: #0009;
+    position: absolute;
+}
+div#aagtp-popup-container {
+    background: #fff;
+    position: relative;
+}
+p.aagtp-note {
+    font-size: 12px;
+    margin-top: 5px;
+    color: #747474;
+}

@@ -5,7 +5,7 @@
 /*
 Plugin Name: AA Get That Popup
 Description: A popup maker plugin.
-Version: 1.0.0
+Version: 0.0.1
 Author: Ma. Angelica Arevalo
 License: GPL v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -47,10 +47,11 @@ if( !class_exists('AAGetThatPopup')){
 		function __construct(){
 
 			//jQuery enqueue for plugin use
-			//add_action( 'admin_enqueue_scripts', function(){ wp_enqueue_script( 'jquery' ); });
+			add_action( 'wp_enqueue_scripts', function(){ wp_enqueue_script( 'jquery' ); });
 			//add_action( 'admin_enqueue_scripts', function(){ wp_enqueue_script( 'jquery' ); });
 			//Enqueue scripts admin hook
 			add_action( 'admin_enqueue_scripts', [$this, 'admin_scripts']);
+			add_action( 'admin_enqueue_scripts', [$this, 'aagtp_enqueue_admin_media_uploader']);
 
 		}
 
@@ -68,6 +69,26 @@ if( !class_exists('AAGetThatPopup')){
 				wp_enqueue_script( 'admin_script', plugin_dir_url( __FILE__ )."admin/js/aagtp-admin-main.js", true);
 			}
 		}
+
+		//Media Uploader Enqueue
+		function aagtp_enqueue_admin_media_uploader($hook) {
+			global $post;
+		    if (!isset($post) || !is_admin(  )){
+				return;
+			}
+
+		    if ( $post->post_type === 'aagtp' ) {
+				wp_enqueue_media();
+				wp_enqueue_script(
+					'aagtp-admin-media',
+					plugin_dir_url(__FILE__) . 'admin/js/aagtp-admin-media.js',
+					['jquery'],
+					null,
+					true
+				);
+			}
+		}
+
 
 		
 	}
@@ -96,9 +117,15 @@ if( !class_exists('AAGetThatPopup')){
 	/* End of Admin */
 
 	/* Start of Front End */
-	add_action( 'wp_footer', ['Aagtp_popup_front', 'render_popup'] );
+	$popup_front = new Aagtp_popup_front();
+	
+	add_action( 'wp_footer', [$popup_front, 'render_popup'] );
+	add_action( 'wp_head', ['Aagtp_popup_front', 'user_input_style'] );
 
 	add_action( 'wp_enqueue_scripts', ['Aagtp_popup_front', 'popup_styles_scripts']);
+	add_action( 'wp_footer', ['Aagtp_popup_front', 'perpopup_script'] );
+
+
 	/* End of Front End */
 
 

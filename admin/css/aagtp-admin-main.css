@@ -85,6 +85,14 @@ select#aagtp_page_target {
     /* height: 300px; */
 }
 
+body.post-type-aagtp .wp-media-buttons {
+    display: none !important;
+}
+div#aagtp_imageurl {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
 @media only screen and (max-width: 991px){
     .buttonsettings, .popupsettings {
         gap: 0;

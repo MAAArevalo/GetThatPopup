@@ -23,6 +23,7 @@ class Aagtp_adminfields{
          */
         //button
         $gen_ButtonText = sanitize_text_field( get_post_meta( $post->ID, '_aagtp_button_text', true ) );
+        $gen_ButtonURL = esc_url( get_post_meta( $post->ID, '_aagtp_button_url', true ) );
         $gen_ButtonWidth = sanitize_text_field( get_post_meta( $post->ID, '_aagtp_button_width', true ) );
         $gen_ButtonTextColor = sanitize_text_field( get_post_meta( $post->ID, '_aagtp_button_text_color', true ) );
         $gen_ButtonBackColor = sanitize_text_field( get_post_meta( $post->ID, '_aagtp_button_back_color', true ) );
@@ -33,7 +34,8 @@ class Aagtp_adminfields{
 
         //image
         $gen_ImagePosition = sanitize_text_field( get_post_meta( $post->ID, '_aagtp_image_position', true ) );
-        $gen_ImageUrl = sanitize_text_field( get_post_meta( $post->ID, '_aagtp_image_url', true ) );
+        $gen_ImageRed = esc_url(get_post_meta( $post->ID, '_aagtp_image_red', true ) );
+        $gen_ImageURL = esc_url(get_post_meta( $post->ID, '_aagtp_image_url', true ) );
         $gen_ImageSize = sanitize_text_field( get_post_meta( $post->ID, '_aagtp_image_size', true ) );
 
         //popup
@@ -81,7 +83,7 @@ class Aagtp_adminfields{
                                 <label for="aagtp_popup_back_color">Popup Background Color:</label>
                                 <div class="color-input">
                                     <input type="color" name="aagtp_popup_back_color" id="aagtp_popup_back_color" value="<?php echo esc_attr( $gen_PopupBackColor ); ?>">
-                                    <input type="text" placeholder="#000000" id="aagtp_popup_back_color-hex" readonly>
+                                    <input type="text" placeholder="#000000" id="aagtp_popup_back_color-hex" value="<?php echo esc_attr( $gen_PopupBackColor ); ?>" readonly>
                                 </div>
 
 
@@ -90,14 +92,14 @@ class Aagtp_adminfields{
                                 <label for="aagtp_popup_text_color_p">Paragraph Color:</label>
                                 <div class="color-input">
                                     <input type="color" name="aagtp_popup_text_color_p" id="aagtp_popup_text_color_p" value="<?php echo esc_attr( $gen_PopupTextColP ); ?>">
-                                    <input type="text" placeholder="#000000" id="aagtp_popup_text_color_p-hex" readonly>
+                                    <input type="text" placeholder="#000000" id="aagtp_popup_text_color_p-hex" value="<?php echo esc_attr( $gen_PopupTextColP ); ?>" readonly>
                                 </div>
                             </div>
                             <div class="aagtp_setting-item" id="aagtp_popuptextcolorh">
                                 <label for="aagtp_popup_text_color_h">Heading Color:</label>
                                 <div class="color-input">
                                     <input type="color" name="aagtp_popup_text_color_h" id="aagtp_popup_text_color_h" value="<?php echo esc_attr( $gen_PopupTextColH ); ?>">
-                                    <input type="text" placeholder="#000000" id="aagtp_popup_text_color_h-hex" readonly>
+                                    <input type="text" placeholder="#000000" id="aagtp_popup_text_color_h-hex" value="<?php echo esc_attr( $gen_PopupTextColH ); ?>" readonly>
                                 </div>
 
                             </div>
@@ -117,36 +119,40 @@ class Aagtp_adminfields{
                                 <input type="number" placeholder="0" name="aagtp_button_width" id="aagtp_button_width" value="<?php echo esc_attr( $gen_ButtonWidth ); ?>">
                                 <p class="aagtp-note">Note: width of 0 means normal width/unset.</p>
                             </div>
-                            <div class="aagtp_setting-item" id="aagtp_buttontextcolor">
-                                <label for="aagtp_button_textcolor">Button Text Color:</label>
-                                <div class="color-input">
-                                    <input type="color" placeholder="ex. #000000" name="aagtp_button_textcolor" id="aagtp_button_textcolor" value="<?php echo esc_attr( $gen_ButtonTextColor ); ?>">
-                                    <input type="text" id="aagtp_button_textcolor-hex" placeholder="#000000" readonly>
-                                </div>
+                            <div class="aagtp_setting-item" id="aagtp_buttonurl">
+                                <label for="aagtp_button_url">Button Link: </label>
+                                <input type="text" placeholder="Button Link: https://example.com" name="aagtp_button_url" id="aagtp_button_url" value="<?php echo esc_attr( $gen_ButtonURL ); ?>">
                             </div>
-                            <div class="aagtp_setting-item" id="aagtp_buttonbackcolor">
-                                <label for="aagtp_button_backcolor">Button Background Color:</label>
-                                <div class="color-input">
-                                    <input type="color" placeholder="ex. #000000" name="aagtp_button_backcolor" id="aagtp_button_backcolor" value="<?php echo esc_attr( $gen_ButtonBackColor ); ?>">
-                                    <input type="text" id="aagtp_button_backcolor-hex" placeholder="#000000" readonly>
-                                </div>
-                            </div>
+
                         </div>
                         <div class="button-settings-hover">
                             <div class="aagtp_setting-item" id="aagtp_buttontextcolorhover">
                                 <label for="aagtp_button_text_color_hover">Button Hover Text Color:</label>
                                 <div class="color-input">
                                     <input type="color" placeholder="ex. #000000" name="aagtp_button_text_color_hover" id="aagtp_button_text_color_hover" value="<?php echo esc_attr( $gen_HoverButtonTextColor ); ?>">
-                                    <input type="text" id="aagtp_button_text_color_hover-hex" placeholder="#000000" readonly>
+                                    <input type="text" id="aagtp_button_text_color_hover-hex" placeholder="#000000" value="<?php echo esc_attr( $gen_HoverButtonTextColor ); ?>" readonly>
                                 </div>
                             </div>
                             <div class="aagtp_setting-item" id="aagtp_buttonbackcolorhover">
                                 <label for="aagtp_button_back_color_hover">Button Hover Background Color:</label>
                                 <div class="color-input">
                                     <input type="color" placeholder="ex. #000000" name="aagtp_button_back_color_hover" id="aagtp_button_back_color_hover" value="<?php echo esc_attr( $gen_HoverButtonBackColor ); ?>">
-                                    <input type="text" id="aagtp_button_back_color_hover-hex" placeholder="#000000" readonly>
+                                    <input type="text" id="aagtp_button_back_color_hover-hex" placeholder="#000000" value="<?php echo esc_attr( $gen_HoverButtonBackColor ); ?>" readonly>
                                 </div>
-
+                            </div>
+                            <div class="aagtp_setting-item" id="aagtp_buttontextcolor">
+                                <label for="aagtp_button_textcolor">Button Text Color:</label>
+                                <div class="color-input">
+                                    <input type="color" placeholder="ex. #000000" name="aagtp_button_textcolor" id="aagtp_button_textcolor" value="<?php echo esc_attr( $gen_ButtonTextColor ); ?>">
+                                    <input type="text" id="aagtp_button_textcolor-hex" placeholder="#000000" value="<?php echo esc_attr( $gen_ButtonTextColor ); ?>" readonly>
+                                </div>
+                            </div>
+                            <div class="aagtp_setting-item" id="aagtp_buttonbackcolor">
+                                <label for="aagtp_button_backcolor">Button Background Color:</label>
+                                <div class="color-input">
+                                    <input type="color" placeholder="ex. #000000" name="aagtp_button_backcolor" id="aagtp_button_backcolor" value="<?php echo esc_attr( $gen_ButtonBackColor ); ?>">
+                                    <input type="text" id="aagtp_button_backcolor-hex" placeholder="#000000" value="<?php echo esc_attr( $gen_ButtonBackColor ); ?>" readonly>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -155,29 +161,36 @@ class Aagtp_adminfields{
                         <div class="divider"></div>
                         <div class="image-setting-col">
                             <div class="image-setting-col-1">
-                                <div class="aagtp_setting-item" id="aagtp_imageposition">
+                                <div class="aagtp_setting-item" id="aagtp_imageurl">
+                                    <label for="aagtp_image_url">Popup Image:</label>
+                                    <input type="text" id="aagtp_image_url" name="aagtp_image_url" value="<?php echo esc_attr( $gen_ImageURL ); ?>" />
+                                    <button class="button aagtp-upload-button">Select Popup Image</button>
+                                </div>
+                                <div class="aagtp_setting-item" id="aagtp_imagered">
+                                    <label for="aagtp_image_red">Image Redirect URL:</label>
+                                    <input type="text" name="aagtp_image_red" id="aagtp_image_red" value="<?php echo esc_attr( $gen_ImageRed ); ?>">
+                                </div>
+
+                            </div>
+                            <div class="image-setting-col-2">
+                                <!-- <div class="aagtp_setting-item" id="aagtp_imagesize">
+                                    <label for="aagtp_image_size">Image Size:</label>
+                                    <select name="aagtp_image_size" id="aagtp_image_size">
+                                        <option value="cover" selected <?php selected( $gen_ImageSize, 'cover' ); ?>>Cover</option>
+                                        <option value="contain" <?php selected( $gen_ImageSize, 'contain' ); ?>>Contain</option>
+                                    </select>
+                                </div> -->
+                                <!-- <div class="aagtp_setting-item" id="aagtp_imageposition">
                                     <label for="aagtp_image_position">Image Position:</label>
                                     <select name="aagtp_image_position" id="aagtp_image_position">
                                         <option value="right" selected <?php selected( $gen_ImagePosition, 'right' ); ?>>Right</option>
                                         <option value="top" <?php selected( $gen_ImagePosition, 'top' ); ?>>Top</option>
                                         <option value="left" <?php selected( $gen_ImagePosition, 'left' ); ?>>Left</option>
                                     </select>
-                                </div>
-                            </div>
-                            <div class="image-setting-col-2">
-                                <div class="aagtp_setting-item" id="aagtp_imagesize">
-                                    <label for="aagtp_image_size">Image Size:</label>
-                                    <select name="aagtp_image_size" id="aagtp_image_size">
-                                        <option value="cover" selected <?php selected( $gen_ImageSize, 'cover' ); ?>>Cover</option>
-                                        <option value="contain" <?php selected( $gen_ImageSize, 'contain' ); ?>>Contain</option>
-                                    </select>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
-                        <div class="aagtp_setting-item" id="aagtp_imageurl">
-                            <label for="aagtp_image_url">Image Redirect URL:</label>
-                            <input type="text" name="aagtp_image_url" id="aagtp_image_url" value="<?php echo esc_attr( $gen_ImageUrl ); ?>">
-                        </div>
+
                     </div>
                 </div>
                 <div id="aagtp_adv-cont" class="aagtp_popupcont">
@@ -261,6 +274,9 @@ class Aagtp_adminfields{
         if(isset($_POST['aagtp_button_text'])):
             update_post_meta( $post_id, '_aagtp_button_text', sanitize_text_field( $_POST['aagtp_button_text'] ) );
         endif;
+        if(isset($_POST['aagtp_button_url'])):
+            update_post_meta( $post_id, '_aagtp_button_url', esc_url_raw( $_POST['aagtp_button_url'] ) );
+        endif;
         if(isset($_POST['aagtp_button_width'])):
             update_post_meta( $post_id, '_aagtp_button_width', sanitize_text_field( $_POST['aagtp_button_width'] ) );
         endif;
@@ -283,8 +299,11 @@ class Aagtp_adminfields{
         if(isset($_POST['aagtp_image_position'])):
             update_post_meta( $post_id, '_aagtp_image_position', sanitize_text_field( $_POST['aagtp_image_position'] ) );
         endif;
+        if(isset($_POST['aagtp_image_red'])):
+            update_post_meta( $post_id, '_aagtp_image_red', esc_url_raw( $_POST['aagtp_image_red'] ) );
+        endif;
         if(isset($_POST['aagtp_image_url'])):
-            update_post_meta( $post_id, '_aagtp_image_url', sanitize_text_field( $_POST['aagtp_image_url'] ) );
+            update_post_meta( $post_id, '_aagtp_image_url', esc_url_raw( $_POST['aagtp_image_url'] ) );
         endif;
         if(isset($_POST['aagtp_image_size'])):
             update_post_meta( $post_id, '_aagtp_image_size', sanitize_text_field( $_POST['aagtp_image_size'] ) );

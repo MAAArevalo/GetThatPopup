@@ -11,14 +11,14 @@ if(!defined('WP_UNINSTALL_PLUGIN')){
 }
 
 //Clear database stored data
-$aagtpPopup = get_post(array(
-    'post_type'     => 'aagpt',
+$aagtpPopup = get_posts([
+    'post_type'     => 'aagtp',
     'numberposts'   => -1,
     'fields'        => 'ids'
-));
+]);
 
 if( ! empty($aagtpPopup)){
     foreach( $aagtpPopup as $popup){
-        wp_delete_post($popup->ID, true);
+        wp_delete_post($popup, true);
     }
 }

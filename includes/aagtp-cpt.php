@@ -7,8 +7,8 @@ class Aagtp_CPT{
     public static function add_cpt(){
         register_post_type( 'aagtp', array(
             'labels'      => array(
-				'name'          => __( 'AAGTP Popups', 'textdomain' ),
-				'singular_name' => __( 'AAGTP Popup', 'textdomain' ),
+				'name'          => __( 'AAGTP Popups', 'aa-get-that-popup' ),
+				'singular_name' => __( 'AAGTP Popup', 'aa-get-that-popup' ),
 				'menu_name'          => 'AAGTP Popups',
         		'name_admin_bar'     => 'AAGTP Popup',
         		'add_new'            => 'Add New',

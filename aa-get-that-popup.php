@@ -6,7 +6,7 @@
 Plugin Name: AA Get That Popup
 Description: A popup maker plugin.
 Version: 0.0.1
-Author: Ma. Angelica Arevalo
+Author: Ma. Angelica "Rei" Arevalo
 License: GPL v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 Text Domain: aagtp
